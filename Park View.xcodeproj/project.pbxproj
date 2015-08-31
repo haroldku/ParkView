@@ -23,6 +23,10 @@
 		52D644181A0FFD2600CCA056 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D644171A0FFD2600CCA056 /* AppDelegate.swift */; };
 		BF536CB61B90BD100042D9A3 /* MagicMountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF536CB51B90BD100042D9A3 /* MagicMountain.plist */; };
 		BF536CB81B90BD9D0042D9A3 /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF536CB71B90BD9D0042D9A3 /* Park.swift */; };
+		BF870AC51B94EDD9005B1D86 /* overlay_park.png in Resources */ = {isa = PBXBuildFile; fileRef = BF870AC41B94EDD9005B1D86 /* overlay_park.png */; };
+		BF870AC71B94EDE5005B1D86 /* overlay_park@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF870AC61B94EDE5005B1D86 /* overlay_park@2x.png */; };
+		BF870AC91B94FA8B005B1D86 /* ParkMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF870AC81B94FA8B005B1D86 /* ParkMapOverlay.swift */; };
+		BF870ACB1B94FC1C005B1D86 /* ParkMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF870ACA1B94FC1C005B1D86 /* ParkMapOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,10 @@
 		52D644171A0FFD2600CCA056 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF536CB51B90BD100042D9A3 /* MagicMountain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MagicMountain.plist; sourceTree = "<group>"; };
 		BF536CB71B90BD9D0042D9A3 /* Park.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Park.swift; sourceTree = "<group>"; };
+		BF870AC41B94EDD9005B1D86 /* overlay_park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay_park.png; sourceTree = "<group>"; };
+		BF870AC61B94EDE5005B1D86 /* overlay_park@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlay_park@2x.png"; sourceTree = "<group>"; };
+		BF870AC81B94FA8B005B1D86 /* ParkMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkMapOverlay.swift; sourceTree = "<group>"; };
+		BF870ACA1B94FC1C005B1D86 /* ParkMapOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkMapOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +82,8 @@
 		076BF08F1680459100ACF08A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BF870AC41B94EDD9005B1D86 /* overlay_park.png */,
+				BF870AC61B94EDE5005B1D86 /* overlay_park@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -96,6 +106,8 @@
 		076BF092168045C900ACF08A /* Overlays */ = {
 			isa = PBXGroup;
 			children = (
+				BF870AC81B94FA8B005B1D86 /* ParkMapOverlay.swift */,
+				BF870ACA1B94FC1C005B1D86 /* ParkMapOverlayView.swift */,
 			);
 			name = Overlays;
 			sourceTree = "<group>";
@@ -223,9 +235,11 @@
 			files = (
 				07866ABD165EE2B400D7BB3A /* InfoPlist.strings in Resources */,
 				07866AC5165EE2B400D7BB3A /* Default.png in Resources */,
+				BF870AC51B94EDD9005B1D86 /* overlay_park.png in Resources */,
 				07866AC7165EE2B400D7BB3A /* Default@2x.png in Resources */,
 				BF536CB61B90BD100042D9A3 /* MagicMountain.plist in Resources */,
 				07866AC9165EE2B400D7BB3A /* Default-568h@2x.png in Resources */,
+				BF870AC71B94EDE5005B1D86 /* overlay_park@2x.png in Resources */,
 				07866ACC165EE2B400D7BB3A /* MainStoryboard_iPhone.storyboard in Resources */,
 				07866ACF165EE2B400D7BB3A /* MainStoryboard_iPad.storyboard in Resources */,
 			);
@@ -241,6 +255,8 @@
 				52D644161A0FFB7400CCA056 /* ParkMapViewController.swift in Sources */,
 				52D644181A0FFD2600CCA056 /* AppDelegate.swift in Sources */,
 				52D644141A0FF9E500CCA056 /* MapOptionsViewController.swift in Sources */,
+				BF870AC91B94FA8B005B1D86 /* ParkMapOverlay.swift in Sources */,
+				BF870ACB1B94FC1C005B1D86 /* ParkMapOverlayView.swift in Sources */,
 				BF536CB81B90BD9D0042D9A3 /* Park.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

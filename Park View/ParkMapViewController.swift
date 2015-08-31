@@ -21,13 +21,31 @@ class ParkMapViewController: UIViewController {
   @IBOutlet weak var mapTypeSegmentedControl: UISegmentedControl!
   
   var selectedOptions = [MapOptionsType]()
+  var park = Park(filename: "MagicMountain")
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let latDelta = park.overlayTopLeftCoordinate.latitude - park.overlayBottomRightCoordinate.latitude
+    
+    let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
+    
+    let region = MKCoordinateRegionMake(park.midCoordinate, span)
+    mapView.region = region
   }
   
   func loadSelectedOptions() {
-    // To be implemented
+    mapView.removeAnnotations(mapView.annotations)
+    mapView.removeOverlays(mapView.overlays)
+    
+    for option in selectedOptions {
+        switch (option) {
+        case .MapOverlay:
+            addOverlay()
+        default:
+            break;
+        }
+    }
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -42,12 +60,38 @@ class ParkMapViewController: UIViewController {
   }
   
   @IBAction func mapTypeChanged(sender: AnyObject) {
-    // To be implemented
+    let mapType = MapType(rawValue: mapTypeSegmentedControl.selectedSegmentIndex)
+    switch(mapType!) {
+    case .Standard:
+        mapView.mapType = MKMapType.Standard
+    case .Hybrid:
+        mapView.mapType = MKMapType.Hybrid  
+    case .Satellite:
+        mapView.mapType = MKMapType.Satellite
+    }
   }
+    
+  func addOverlay() {
+    let overlay = ParkMapOverlay(park: park)
+    mapView.addOverlay(overlay)
+    
+    
+    
+    }
 }
 
 // MARK: - Map View delegate
 
 extension ParkMapViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) ->MKOverlayRenderer! {
+        if overlay is ParkMapOverlay {
+            let magicMountainImage = UIImage(named: "overlay_park")
+            let overlayView = ParkMapOverlayView(overlay: overlay, overlayImage: magicMountainImage!)
+            
+            return overlayView
+        }
+        
+        return nil
+    }
     
 }
