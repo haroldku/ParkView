@@ -44,6 +44,8 @@ class ParkMapViewController: UIViewController {
             addOverlay()
         case .MapPins:
             addAttractionPins()
+        case .MapRoute:
+            addRoute()
         default:
             break;
         }
@@ -95,6 +97,24 @@ class ParkMapViewController: UIViewController {
             mapView.addAnnotation(annotation)
         }
     }
+    
+    func addRoute() {
+    let thePath = NSBundle.mainBundle().pathForResource("EntranceToGoliathRoute", ofType: "plist")
+    let pointsArray = NSArray(contentsOfFile: thePath!)
+    
+    let pointsCount = pointsArray!.count
+    
+    var pointsToUse: [CLLocationCoordinate2D] = []
+    
+    for i in 0...pointsCount-1 {
+        let p = CGPointFromString(pointsArray![i] as! String)
+        pointsToUse += [CLLocationCoordinate2DMake(CLLocationDegrees(p.x), CLLocationDegrees(p.y))]
+    }
+    
+    let myPolyline = MKPolyline(coordinates: &pointsToUse, count: pointsCount)
+    
+    mapView.addOverlay(myPolyline)
+    }
 
 }
 
@@ -107,6 +127,11 @@ extension ParkMapViewController: MKMapViewDelegate {
             let overlayView = ParkMapOverlayView(overlay: overlay, overlayImage: magicMountainImage!)
             
             return overlayView
+        }else if overlay is MKPolyline {
+            let lineView = MKPolylineRenderer(overlay: overlay)
+            lineView.strokeColor = UIColor.greenColor()
+            
+            return lineView
         }
         
         return nil
