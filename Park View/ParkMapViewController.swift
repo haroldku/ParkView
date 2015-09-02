@@ -42,6 +42,8 @@ class ParkMapViewController: UIViewController {
         switch (option) {
         case .MapOverlay:
             addOverlay()
+        case .MapPins:
+            addAttractionPins()
         default:
             break;
         }
@@ -78,6 +80,22 @@ class ParkMapViewController: UIViewController {
     
     
     }
+    
+   func addAttractionPins() {
+        let filePath = NSBundle.mainBundle().pathForResource("MagicMountainAttractions", ofType: "plist")
+        let attractions = NSArray(contentsOfFile: filePath!)
+        for attraction in attractions! {
+            let point = CGPointFromString(attraction["location"] as! String)
+            let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(point.x), CLLocationDegrees(point.y))
+            let title = attraction["name"] as! String
+            let typeRawValue = (attraction["type"] as! String).toInt()!
+            let type = AttractionType(rawValue: typeRawValue)
+            let subtitle = attraction["subtitle"] as! String
+            let annotation = AttractionAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type!)
+            mapView.addAnnotation(annotation)
+        }
+    }
+
 }
 
 // MARK: - Map View delegate
@@ -94,4 +112,10 @@ extension ParkMapViewController: MKMapViewDelegate {
         return nil
     }
     
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+        let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
+        annotationView.canShowCallout = true
+        return annotationView
+    }
 }
