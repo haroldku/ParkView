@@ -46,6 +46,8 @@ class ParkMapViewController: UIViewController {
             addAttractionPins()
         case .MapRoute:
             addRoute()
+        case .MapBoundary:
+            addBoundary()
         default:
             break;
         }
@@ -74,6 +76,11 @@ class ParkMapViewController: UIViewController {
         mapView.mapType = MKMapType.Satellite
     }
   }
+  
+    func addBoundary() {
+        let polygon = MKPolygon(coordinates: &park.boundary, count: park.boundaryPointsCount)
+        mapView.addOverlay(polygon)
+    }
     
   func addOverlay() {
     let overlay = ParkMapOverlay(park: park)
@@ -132,6 +139,11 @@ extension ParkMapViewController: MKMapViewDelegate {
             lineView.strokeColor = UIColor.greenColor()
             
             return lineView
+        }else if overlay is MKPolygon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.strokeColor = UIColor.magentaColor()
+            
+            return polygonView
         }
         
         return nil
