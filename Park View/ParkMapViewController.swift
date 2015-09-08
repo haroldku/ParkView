@@ -108,7 +108,7 @@ class ParkMapViewController: UIViewController {
     }
     
     func addRoute() {
-    let thePath = NSBundle.mainBundle().pathForResource("EntranceToGoliathRoute", ofType: "plist")
+    let thePath = NSBundle.mainBundle().pathForResource("Route100", ofType: "plist")
     let pointsArray = NSArray(contentsOfFile: thePath!)
     
     let pointsCount = pointsArray!.count
